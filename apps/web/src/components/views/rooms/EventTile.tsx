@@ -65,7 +65,6 @@ import { type ShowThreadPayload } from "../../../dispatcher/payloads/ShowThreadP
 import { getLateEventInfo } from "../../structures/grouper/LateEventGrouper";
 import PinningUtils from "../../../utils/PinningUtils";
 import { ActionBarAdapter } from "./EventTile/ActionBarAdapter";
-import { dbgTmpDump } from "../../../DBG_TMP"; // DBG_TMP
 import { E2eStandardPadlockIcon } from "./EventTile/E2eStandardPadlockIcon";
 import { E2eMessageSharedIconAdapter } from "./EventTile/E2eMessageSharedIconAdapter";
 import { EventTileAvatarAdapter } from "./EventTile/EventTileAvatarAdapter";
@@ -380,10 +379,6 @@ export class UnwrappedEventTile extends React.Component<EventTileProps, IState> 
     }
 
     public componentDidMount(): void {
-        if (this.props.mxEvent.getContent().body?.includes("worker0")) {
-            dbgTmpDump("wide-tile", () => this.ref.current?.querySelector("strong")); // DBG_TMP
-            dbgTmpDump("wide-tile-root", () => this.ref.current); // DBG_TMP
-        }
         this.suppressReadReceiptAnimation = false;
         this.e2eViewModelSubscription = this.e2eViewModel.subscribe(() => {
             this.forceUpdate();
