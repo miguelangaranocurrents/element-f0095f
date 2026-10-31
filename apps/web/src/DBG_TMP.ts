@@ -15,7 +15,7 @@ export function dbgTmpDump(label: string, getEl: () => Element | null | undefine
     setTimeout(() => {
         const el = getEl();
         if (!el) {
-            console.log("DBG_TMP", label, "no element");
+            console.error("DBG_TMP", label, "no element");
             return;
         }
         const r = el.getBoundingClientRect();
@@ -31,7 +31,7 @@ export function dbgTmpDump(label: string, getEl: () => Element | null | undefine
             ? `panel top=${panel.scrollTop} h=${panel.scrollHeight} ch=${panel.clientHeight} left=${panel.scrollLeft} w=${panel.scrollWidth} cw=${panel.clientWidth}`
             : "no panel";
         const se = document.scrollingElement;
-        console.log(
+        console.error(
             "DBG_TMP",
             label,
             `viewport=${innerWidth}x${innerHeight} docScroll=${se?.scrollLeft},${se?.scrollTop} ${scroll}`,
