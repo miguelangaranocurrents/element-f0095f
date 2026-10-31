@@ -9,6 +9,7 @@ Please see LICENSE files in the repository root for full details.
 import React, { createRef, type RefObject } from "react";
 import classNames from "classnames";
 import { flatMap } from "lodash";
+import { dbgTmpDump } from "../../../DBG_TMP"; // DBG_TMP
 import { type Room } from "matrix-js-sdk/src/matrix";
 
 import Autocompleter, {
@@ -79,6 +80,7 @@ export default class Autocomplete extends React.PureComponent<IProps, IState> {
     public componentDidMount(): void {
         this.autocompleter = new Autocompleter(this.props.room, this.context.timelineRenderingType);
         this.applyNewProps();
+        dbgTmpDump("autocomplete", () => this.containerRef.current); // DBG_TMP
     }
 
     private applyNewProps(oldQuery?: string, oldRoom?: Room): void {

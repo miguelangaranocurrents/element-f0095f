@@ -104,6 +104,7 @@ export const usePermalinkMember = (
     const userId = determineUserId(type, parseResult, event);
     const userInRoom = shouldLookUpUser && userId && targetRoom ? determineMember(userId, targetRoom, context) : null;
     const [member, setMember] = useState<RoomMember | null>(userInRoom);
+    if (type === PillType.UserMention) console.log("DBG_TMP pill", userId, targetRoom?.roomId, targetRoom?.getMember(userId ?? "")?.membership, !!userInRoom, targetRoom?.getJoinedMemberCount()); // DBG_TMP
 
     useEffect(() => {
         if (!shouldLookUpUser || !userId || member) {
